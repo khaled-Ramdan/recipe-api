@@ -1,0 +1,27 @@
+{
+  "name": "recipe-api",
+  "version": "1.0.0",
+  "description": "create an api for recipies ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khaled-Ramdan/recipe-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khaled-Ramdan/recipe-api/issues"
+  },
+  "homepage": "https://github.com/khaled-Ramdan/recipe-api#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
