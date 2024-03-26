@@ -1,11 +1,17 @@
-import express from "express"
-import { getRecipe, getRecipeById, updateRecipe } from "../controllers/controller.js"
+import express from "express";
+import { 
+    getRecipe, 
+    getRecipeById, 
+    updateRecipe, 
+    deleteRecipe 
+} from "../controllers/controller.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.route("/").get(getRecipe)
-router.route("/:id").get(getRecipeById).patch(updateRecipe)
+router.route("/").get(getRecipe);
+router.route("/:id")
+    .get(getRecipeById)
+    .patch(updateRecipe)
+    .delete(deleteRecipe);
 
-
-
-export default router
+export default router;
