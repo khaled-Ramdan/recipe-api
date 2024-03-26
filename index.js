@@ -7,6 +7,7 @@ app.get("/", (req, res) => {
     res.send("Welcome to our api")
 })
 
+app.use(express.json())
 app.use("/api",router)
 
 
