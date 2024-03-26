@@ -1,10 +1,10 @@
 import express from "express"
-import { testfunction } from "../controllers/controller.js"
+import { getRecipe, getRecipeById } from "../controllers/controller.js"
 
 const router = express.Router()
 
-
-router.route("/").get(testfunction)
+router.route("/").get(getRecipe)
+router.route("/:id").get(getRecipeById)
 
 
 
