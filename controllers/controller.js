@@ -56,3 +56,27 @@ export const deleteRecipe = (req, res) => {
 	recipes.splice(idx, 1);
 	res.status(200).json(recipes);
 };
+
+export const getSimilarRecipes = (req, res) => {
+	const { id } = req.params;
+	const recipe = recipes.find((recipe) => recipe.id === id);
+	if (!recipe) {
+		res.status(404).json({
+			message: `Recipe with id ${id} is not found`,
+		});
+	}
+	const ingredients = recipe.ingredients;
+	const similar = [];
+	recipes.forEach((recipe) => {
+		if (recipe.id !== id) {
+			const similarity =
+				ingredients.reduce((similarity, ingredient) => {
+					return similarity + recipe.ingredients.includes(ingredient);
+				}, 0);
+			if (similarity >= ingredients.length / 2) {
+				similar.push(recipe);
+			}
+		}
+	});
+	res.status(200).json(similar);
+};
