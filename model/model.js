@@ -1,7 +1,7 @@
 // here is to implement our database 
 
 
-export const recipes = [
+export let recipes = [
 	{
 		id: "id1",
 		name: "makarona bashamel",
