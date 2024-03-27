@@ -1,4 +1,4 @@
-import { recipes, append_element, getl } from "../model/model.js"
+import { recipes, append_element, getl, chefs } from "../model/model.js"
 
 export const getRecipe = (req, res) => {
 	let { name, sort, filter } = req.query
@@ -19,6 +19,7 @@ export const getRecipe = (req, res) => {
 export const getRecipeById = (req, res) => {
 	let { id } = req.params
 	let result = recipes.filter((recipe) => recipe.id === id)
+	console.log(id)
 	res.json(result)
 }
 
@@ -60,6 +61,12 @@ export const updateRecipe = (req, res) => {
 	recipes[recipe].Calories =
 		Calories == undefined ? recipes[recipe].Calories : Calories
 	res.status(200).json(recipes[recipe])
+}
+
+export const getChefById = (req, res) => {
+	let { chefId } = req.params
+	let result = chefs.filter((chef) => chef.id === chefId)
+	res.json(result)
 }
 
 export const createRecipe = (req, res) => {
