@@ -1,5 +1,5 @@
 import AppError from '../errorHandling/AppError.js'
-import { recipes, append_element, getl } from '../model/model.js'
+import { recipes, append_element, getl, chefs } from "../model/model.js"
 
 export const getRecipe = (req, res) => {
     let { chef_name, sort, filter } = req.query
@@ -66,6 +66,12 @@ export const updateRecipe = (req, res) => {
     recipes[recipe].Calories =
         Calories == undefined ? recipes[recipe].Calories : Calories
     res.status(200).json(recipes[recipe])
+}
+
+export const getChefById = (req, res) => {
+	let { chefId } = req.params
+	let result = chefs.filter((chef) => chef.id === chefId)
+	res.json(result)
 }
 
 export const createRecipe = (req, res) => {
