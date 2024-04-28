@@ -166,14 +166,15 @@ export const deleteRecipe = async (req, res) => {
     });
 };
 
-export const getSimilarRecipes = (req, res) => {
+export const getSimilarRecipes = async (req, res) => {
     const { id } = req.params;
-    const recipe = recipes.find((recipe) => recipe.id === id);
+    const recipe = await Recipe.findById(id);
     if (!recipe) {
-        res.status(404).json({
+        return res.status(404).json({
             message: `Recipe with id ${id} is not found`,
         });
     }
+    const recipes = await Recipe.find();
     const ingredients = recipe.ingredients;
     const similar = [];
     recipes.forEach((recipe) => {
