@@ -1,10 +1,6 @@
 import { Schema, model } from "mongoose";
 
 const schema = new Schema({
-    id: {
-        type: String,
-        required: true
-    },
     chef_name: {
         type: String,
         required: true
