@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "027040c4-4e50-4693-87f7-c97d55d329ec",
+		"_postman_id": "a4d3a34b-f60b-48de-8a01-a348b8512c20",
 		"name": "food recipe",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32745075"
+		"_exporter_id": "34601434"
 	},
 	"item": [
 		{
@@ -218,6 +218,31 @@
 						"api",
 						"id2",
 						"similar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get chef by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}/api/chef/:chefId}",
+					"host": [
+						"{{url}"
+					],
+					"path": [
+						"api",
+						"chef",
+						":chefId}"
+					],
+					"variable": [
+						{
+							"key": "chefId}",
+							"value": ""
+						}
 					]
 				}
 			},
