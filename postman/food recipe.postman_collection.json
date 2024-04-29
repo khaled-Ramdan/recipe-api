@@ -18,6 +18,18 @@
 					],
 					"path": [
 						""
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "id",
+							"disabled": true
+						},
+						{
+							"key": "filter",
+							"value": "name",
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -29,13 +41,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/id1",
+					"raw": "{{url}}/api/:id",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"id1"
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "662f98203c58681903f46271"
+						}
 					]
 				}
 			},
@@ -47,14 +65,20 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/id2/ingredients",
+					"raw": "{{url}}/api/:id/details",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"id2",
-						"ingredients"
+						":id",
+						"details"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "66203c5868190"
+						}
 					]
 				}
 			},
@@ -66,7 +90,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/?sort=-price&chef_name=ahmed",
+					"raw": "{{url}}/api/?sort=price&name=a",
 					"host": [
 						"{{url}}"
 					],
@@ -77,11 +101,31 @@
 					"query": [
 						{
 							"key": "sort",
-							"value": "-price"
+							"value": "price"
 						},
 						{
-							"key": "chef_name",
-							"value": "ahmed"
+							"key": "chefName",
+							"value": "fe",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "a"
+						},
+						{
+							"key": "minPrice",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "maxPrice",
+							"value": "140",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": null,
+							"disabled": true
 						}
 					]
 				}
