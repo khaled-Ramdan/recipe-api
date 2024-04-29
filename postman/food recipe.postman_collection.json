@@ -42,6 +42,25 @@
 			"response": []
 		},
 		{
+			"name": "show recipe detals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/id2/ingredients",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"id2",
+						"ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "get recipes",
 			"request": {
 				"method": "GET",
@@ -155,25 +174,6 @@
 						"api",
 						"id2",
 						"similar"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "show recipe ingredints",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{url}}/api/id2/ingredients",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"id2",
-						"ingredients"
 					]
 				}
 			},
