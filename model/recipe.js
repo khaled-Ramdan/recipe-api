@@ -14,8 +14,8 @@ const schema = new Schema({
         required: true
     },
     chef_id: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref : "chef",
     },
     description: {
         type: String,

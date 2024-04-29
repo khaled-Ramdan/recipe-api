@@ -6,7 +6,7 @@ import {
     deleteRecipe,
     getSimilarRecipes,
     createRecipe,
-    showRecipeIngredients,
+    showRecipeDetails,
     getChefById
 } from '../controllers/controller.js'
 
@@ -15,7 +15,7 @@ const router = express.Router()
 router.route('/').get(getRecipe).post(createRecipe)
 router.route('/:id').get(getRecipeById).patch(updateRecipe).delete(deleteRecipe)
 router.route('/:id/similar').get(getSimilarRecipes)
-router.route('/:id/ingredients').get(showRecipeIngredients)
+router.route('/:id/details').get(showRecipeDetails)
 router.route("/chef/:chefId").get(getChefById)
 
 export default router
