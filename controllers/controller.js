@@ -2,32 +2,76 @@ import AppError from '../errorHandling/AppError.js';
 import { recipes, append_element, getl, chefs } from "../model/model.js";
 import { Recipe } from "../model/recipe.js";
 
-export const getRecipe = (req, res) => {
-    let { chef_name, sort, filter } = req.query;
-    let { id } = req.params;
+// khaled
+export const getRecipe =async (req, res, next) => {
+    let {name,  chefName, minPrice, maxPrice, sort } = req.query;
 
-    let result = recipes;
+    let result;
 
-    if (sort) {
-        let sortKey = 1;
-        if (sort.startsWith('-')) {
-            sortKey = -1;
-            sort = sort.substr(1);
-        }
-        result = result.sort((a, b) => (a[sort] > b[sort] ? sortKey : -sortKey));
+    const seacrchQuery = {}
+    
+    if(name)
+        seacrchQuery.name = {$regex: name, $options: "i"}
+    if(chefName)
+        seacrchQuery.chef_name = {$regex: chefName, $options: "i"}
+
+    if(minPrice && !isNaN(minPrice))
+        seacrchQuery.price ?  seacrchQuery.price["$gte"] = minPrice : seacrchQuery.price = {$gte: minPrice}
+    
+    
+    if(maxPrice && !isNaN(maxPrice))
+    seacrchQuery.price ?  seacrchQuery.price["$lte"] = maxPrice : seacrchQuery.price = {$lte: maxPrice}
+
+
+    try{
+        result = await Recipe.find(seacrchQuery).sort(sort);
+    }catch(err){
+        next(AppError("Something went wront. Type correct query and try agin",401))
     }
 
-    if (chef_name)
-        result = result.filter((recipe) => recipe.chef_name == chef_name);
+    res.status(200).json(result);
+};
+
+export const getRecipeById = async (req, res, next) => {
+    let { id } = req.params; // for test : 662f8afaeca33f94ce3e5686, 662f8ac9dba98735568ae9a5, 662ec97c1d33ae7f3651e68f
+
+    let result = undefined
+    try{
+        result = await Recipe.findById(id,{name: 1,
+        price: 1, 
+        chef_name: 1, 
+        cooking_time: 1, _id:0});
+    }catch(err){
+        next(new AppError(`can't find recipe with id = ${id}`, 404))
+        return
+    }
+    if(!result) next(new AppError(`can't find recipe with id = ${id}`, 404))
 
     res.status(200).json(result);
 };
 
-export const getRecipeById = (req, res) => {
-    let { id } = req.params;
-    let result = recipes.filter((recipe) => recipe.id === id);
+export const showRecipeDetails = async (req, res, next) => {
+    const { id } = req.params;
+    let result = undefined
+    try{
+        result = await Recipe.findById(id, {
+            instructions: 1, 
+            ingredients: 1, 
+            createdAt: 1, 
+            updatedAt: 1,
+            _id: 0
+            
+        });
+    }catch(err){
+        next(new AppError(`can't find recipe with id = ${id}`, 404))
+        return
+    }
+    if(!result) next(new AppError(`can't find recipe with id = ${id}`, 404))
     res.status(200).json(result);
 };
+
+
+//.....
 
 export const updateRecipe = (req, res) => {
     let { id } = req.params;
@@ -190,11 +234,4 @@ export const getSimilarRecipes = async (req, res) => {
     res.status(200).json(similar);
 };
 
-export const showRecipeIngredients = (req, res) => {
-    const { id } = req.params;
-    const recipe = recipes.find((recipe) => recipe.id === id);
-    if (!recipe) {
-        throw new AppError(`Recipe with id ${id} not found`, 404);
-    }
-    res.status(200).json({ ingredients: recipe.ingredients });
-};
+

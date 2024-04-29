@@ -3,13 +3,16 @@ import router from "./routes/routes.js";
 import { notFound } from "./errorHandling/not-found.js";
 import globalErrorHandler from "./errorHandling/globalErrorHandler.js";
 import mongoose from "mongoose";
+import { Recipe } from './model/recipe.js'
+import { Chef } from './model/chef.js'
 
-const app = express();
-const PORT = 5000;
-
-app.get("/", (req, res) => {
-    res.send("Welcome to our api");
-});
+const app = express()
+const PORT = 5000
+// chefs ids => ahmed : 662f97b00834453b1320c20d, ali :  662f97d830996bc3cba760a6
+// recipes => 662f98203c58681903f46271, 662f98448a2a3d8c9ed7a403
+app.get('/', async (req, res) => {
+    res.send("wellcome to our api ")
+})
 
 app.use(express.json());
 app.use("/api", router);
