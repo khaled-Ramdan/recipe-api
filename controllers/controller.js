@@ -122,7 +122,7 @@ export const updateRecipe = async (req, res, next) => {
 export const getChefById = async (req, res, next) => {
     let { chefId } = req.params
     let result = undefined
-	console.log(chefId)
+    console.log(chefId)
     try {
         result = await Chef.findById(chefId)
     } catch (error) {
@@ -136,82 +136,39 @@ export const getChefById = async (req, res, next) => {
     res.json(result)
 }
 
-export const createRecipe = (req, res) => {
-    let id = recipes.length
+export const createRecipe = async (req, res) => {
     let {
         name,
         price,
         chef_name,
-        Description,
-        i,
-        Instructions,
+        chef_id,
+        description,
+        instructions,
+        ingredients,
         cooking_time,
-        Calories,
+        calories,
     } = req.body
-    if (name == null) {
-        res.status(404).json({ state: 'failed', message: 'name is required' })
+    let recipe = {}
+    if (name) recipe.name = name
+    if (price) recipe.price = price
+    if (chef_name) recipe.chef_name = chef_name
+    if (chef_id) recipe.chef_id = chef_id
+    if (description) recipe.description = description
+    if (ingredients) recipe.ingredients = ingredients.slice()
+    if (instructions) recipe.instructions = instructions
+    if (cooking_time) recipe.cooking_time = cooking_time
+    if (calories) recipe.calories = calories
+    try {
+        let result = await Recipe.create(recipe)
+        if (!result) {
+            next(new AppError(`can't cearte`, 504))
+            return
+        }
+        res.status(201).json(result)
+    } catch (error) {
+        next(new AppError(`data is missing`, 406))
         return
     }
-    if (price == null) {
-        res.status(404).json({ state: 'failed', message: 'price is required' })
-        return
-    }
-    if (chef_name == null) {
-        res.status(404).json({
-            state: 'failed',
-            message: 'chef name is required',
-        })
-        return
-    }
-    if (Description == null) {
-        res.status(404).json({
-            state: 'failed',
-            message: 'Description is required',
-        })
-        return
-    }
-    if (Ingredients == null) {
-        res.status(404).json({
-            state: 'failed',
-            message: 'Ingredients is required',
-        })
-        return
-    }
-    if (Instructions == null) {
-        res.status(404).json({
-            state: 'failed',
-            message: 'Instructions is required',
-        })
-        return
-    }
-    if (cooking_time == null) {
-        res.status(404).json({
-            state: 'failed',
-            message: 'cooking time is required',
-        })
-        return
-    }
-    if (Calories == null) {
-        res.status(404).json({
-            state: 'failed',
-            message: 'Calories time is required',
-        })
-        return
-    }
-    let x = {}
-    x.id = 'id' + (id + 1)
-    x.name = name
-    x.price = price
-    x.chef_name = chef_name
-    x.Description = Description
-    x.Ingredients = Ingredients
-    x.Instructions = Instructions
-    x.cooking_time = cooking_time
-    x.Calories = Calories
-    // recipes.push(x);
-    append_element(x)
-
-    res.status(200).json(getl())
 }
 
 export const deleteRecipe = async (req, res) => {
