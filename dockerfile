@@ -18,3 +18,11 @@ EXPOSE 5000
 
 # Command to run your application
 CMD ["npm", "start"]
+
+
+#      build: docker build -t recipe-api .
+#      Run:  docker run -p 5000:5000 recipe-api
+#      Stop: 
+#            docker ps 
+#            docker stop <container-id>
+#

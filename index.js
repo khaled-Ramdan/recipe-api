@@ -3,8 +3,7 @@ import router from "./routes/routes.js";
 import { notFound } from "./errorHandling/not-found.js";
 import globalErrorHandler from "./errorHandling/globalErrorHandler.js";
 import mongoose from "mongoose";
-import { Recipe } from './model/recipe.js'
-import { Chef } from './model/chef.js'
+
 
 const app = express()
 const PORT = 5000

@@ -41,7 +41,7 @@ export const getRecipe = async (req, res, next) => {
 }
 
 export const getRecipeById = async (req, res, next) => {
-    let { id } = req.params // for test : 662f8afaeca33f94ce3e5686, 662f8ac9dba98735568ae9a5, 662ec97c1d33ae7f3651e68f
+    let { id } = req.params 
 
     let result = undefined
     try {
