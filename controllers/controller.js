@@ -41,7 +41,7 @@ export const getRecipe = async (req, res, next) => {
 }
 
 export const getRecipeById = async (req, res, next) => {
-    let { id } = req.params 
+    let { id } = req.params
 
     let result = undefined
     try {
@@ -146,7 +146,7 @@ export const createRecipe = async (req, res, next) => {
         }
         res.status(201).json(result)
     } catch (error) {
-        next(new AppError(`data is missing`, 406)) // not acceptable
+        next(new AppError(error, 406)) // not acceptable
         return
     }
 }
