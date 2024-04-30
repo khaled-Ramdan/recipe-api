@@ -137,27 +137,7 @@ export const getChefById = async (req, res, next) => {
 }
 
 export const createRecipe = async (req, res) => {
-    let {
-        name,
-        price,
-        chef_name,
-        chef_id,
-        description,
-        instructions,
-        ingredients,
-        cooking_time,
-        calories,
-    } = req.body
-    let recipe = {}
-    if (name) recipe.name = name
-    if (price) recipe.price = price
-    if (chef_name) recipe.chef_name = chef_name
-    if (chef_id) recipe.chef_id = chef_id
-    if (description) recipe.description = description
-    if (ingredients) recipe.ingredients = ingredients.slice()
-    if (instructions) recipe.instructions = instructions
-    if (cooking_time) recipe.cooking_time = cooking_time
-    if (calories) recipe.calories = calories
+    let recipe = req.body
     try {
         let result = await Recipe.create(recipe)
         if (!result) {
