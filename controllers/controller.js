@@ -41,7 +41,7 @@ export const getRecipe = async (req, res, next) => {
 }
 
 export const getRecipeById = async (req, res, next) => {
-    let { id } = req.params 
+    let { id } = req.params
 
     let result = undefined
     try {
@@ -136,17 +136,17 @@ export const getChefById = async (req, res, next) => {
     res.json(result)
 }
 
-export const createRecipe = async (req, res) => {
+export const createRecipe = async (req, res, next) => {
     let recipe = req.body
     try {
         let result = await Recipe.create(recipe)
         if (!result) {
-            next(new AppError(`can't cearte`, 504))
+            next(new AppError(`can't cearte`, 409)) //conflict
             return
         }
         res.status(201).json(result)
     } catch (error) {
-        next(new AppError(`data is missing`, 406))
+        next(new AppError(error, 406)) // not acceptable
         return
     }
 }
