@@ -8,8 +8,8 @@
 
 ## Recipe Program Functions:
 ### 1. getRecipe 
-* **Description:** Get recipes based on specific optional criteria.
-* **Route:** router.route('/').get(getRecipe)
+* **Description:** Find recipes based on specific optional criteria.
+* **Route:** {{url}}/api/  ${\color{blue}Get}$		
 * **Optional Parameters:** Contains optional query parameters for filtering recipes. It may include properties like:
     - name (string): match for recipe name (case-insensitive).
     - chefName (string): match for chef name (case-insensitive).
@@ -17,5 +17,54 @@
     - maxPrice (number): Maximum price range.
     - sort (string): Sorting criteria ( "price" for ascending order, "-price" for descending order).
 * **Returns:**
-    - JSON object containing an array of matching recipes (on success).
-    - Error message and appropriate status code (400 Bad Request) on failure.
+    - JSON object containing an data of matching recipes (on success).
+    - Error message and appropriate status code (on failure).
+
+### 2. getRecipeById 
+* **Description:** Find specific recipe using id.
+* **Route:** {{url}}/api/:id1   ${\color{blue}Get}$	
+* **Returns:**
+    - JSON object containing data of matching recipe (on success).
+    - Error message and appropriate status code (on failure).
+
+### 3. showRecipeDetails
+* **Description:** Get details of specific recipe using id.
+* **Route:** {{url}}/api/:id    ${\color{blue}Get}$	
+* **Returns:**
+    - JSON object containing data of matching recipe (on success).
+    - Error message and appropriate status code (on failure).
+
+### 4. updateRecipe
+* **Description:** Update data of specific recipe using id.
+* **Route:** {{url}}/api/:id   ${\color{yellow}Patch}$	
+* **Returns:**
+    - JSON object containing updated data of matching recipe (on success).
+    - Error message and appropriate status code (on failure).
+
+### 5. getChefById
+* **Description:** Get chef data using his id.
+* **Route:** {{url}}/api/chef/:chefId   ${\color{blue}Get}$		
+* **Returns:**
+    - JSON object containing data of matching chef (on success).
+    - Error message and appropriate status code (on failure).
+
+### 6. createRecipe
+* **Description:** Create new recipe.
+* **Route:** {{url}}/api/   ${\color{green}Post}$	
+* **Returns:**
+    - JSON object containing data of the new recipe (on success).
+    - Error message and appropriate status code (on failure).
+
+### 7. deleteRecipe
+* **Description:** Delete specific recipe using id.
+* **Route:** {{url}}/api/:id   ${\color{red}Delete}$	
+* **Returns:**
+    - JSON object containing successfully delete message  (on success).
+    - Error message and appropriate status code (on failure).
+
+### 8. getSimilarRecipes
+* **Description:** Find recipes that have common ingredients with specific recipe.
+* **Route:** {{url}}/api/:id/similar   ${\color{blue}Get}$	
+* **Returns:**
+    - JSON object containing similar recipes  (on success).
+    - Error message and appropriate status code (on failure).
