@@ -77,4 +77,4 @@
 * **Run:** docker run -p 5000:5000 recipe-api
 * **Stop:** 
     - docker ps 
-    - docker stop <container-id>
+    - docker stop `[container-id]`
