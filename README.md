@@ -36,7 +36,7 @@
 
 ### 4. updateRecipe
 * **Description:** Update data of specific recipe using id.
-* **Route:** {{url}}/api/:id   ${\color{yellow}Patch}$	
+* **Route:** {{url}}/api/:id   ${\color{orange}Patch}$	
 * **Returns:**
     - JSON object containing updated data of matching recipe (on success).
     - Error message and appropriate status code (on failure).
@@ -68,3 +68,13 @@
 * **Returns:**
     - JSON object containing similar recipes  (on success).
     - Error message and appropriate status code (on failure).
+
+## How to run: 
+*    git clone https://github.com/khaled-Ramdan/recipe-api.git
+*    npm install
+## How to use docker:  
+* **build:** docker build -t recipe-api .
+* **Run:** docker run -p 5000:5000 recipe-api
+* **Stop:** 
+    - docker ps 
+    - docker stop <container-id>
